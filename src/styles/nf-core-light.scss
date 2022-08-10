@@ -1,0 +1,20 @@
+// Import our variables
+@import 'variables';
+
+// Import bootstrap
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/variables'; // defaults are here
+// @import '@highlightjs/cdn-assets/styles/github.min';
+
+//
+// Import custom styling for nf-core
+//
+@import '_nf-core.scss';
+
+.hide-light {
+  display: none;
+}
+
+.hide-dark {
+  display: inherit;
+}

@@ -1,0 +1,26 @@
+---
+
+import Markdown from '@astrojs/markdown-component';
+import { PIPELINE_NAMES } from '../../config';
+export async function getStaticPaths() {
+    // loop through pipeline names in PIPELINE_NAMES and generate object with params and pipline name
+    const pipeline_names = PIPELINE_NAMES.map(name => ({
+            params: {
+                pipeline_name: name
+            }
+        }))
+    return pipeline_names;
+}
+
+const { pipeline_name } = Astro.params;
+const response = await fetch('https://raw.githubusercontent.com/nf-core/'+ pipeline_name + '/master/README.md');
+const data = await response.text();
+
+import MainLayout from "../../layouts/MainLayout.astro";
+---
+
+<MainLayout>
+    <h1>{pipeline_name}</h1>
+    <Markdown>{data}</Markdown>
+</MainLayout>
+
